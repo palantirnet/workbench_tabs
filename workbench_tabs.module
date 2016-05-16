@@ -54,7 +54,7 @@ function workbench_tabs_page_top(array &$page_top) {
   ];
 
   $page_top['workbench_tabs']['messages'] = [
-    '#type' => 'status_messages',
+    '#type' => 'workbench_tabs_status_messages',
   ];
 
   $page_top['workbench_tabs']['tabs'] = [
