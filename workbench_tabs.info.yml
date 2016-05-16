@@ -1,0 +1,7 @@
+name: Workbench Tabs
+type: module
+description: 'Displays local task tabs and site messages in the toolbar.'
+package: Workbench
+core: 8.x
+dependencies:
+  - toolbar

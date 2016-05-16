@@ -1,0 +1,80 @@
+<?php
+/**
+ * @file
+ * Drupal hooks.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function workbench_tabs_theme() {
+  return [
+    'workbench_tabs' => [
+      'render element' => 'element',
+    ],
+  ];
+}
+
+/**
+ * Preprocess variables for the workbench tabs template.
+ *
+ * @ingroup themeable
+ */
+function template_preprocess_workbench_tabs(&$variables) {
+  $element = $variables['element'];
+
+  $variables['messages'] = Drupal::service('renderer')->render($element['messages']);
+  $variables['tabs'] = Drupal::service('renderer')->render($element['tabs']);
+}
+
+/**
+ * Implements hook_page_top().
+ */
+function workbench_tabs_page_top(array &$page_top) {
+  $account = \Drupal::currentUser();
+  $is_not_admin_theme = \Drupal::theme()->getActiveTheme()->getName() != \Drupal::config('system.theme')->get('admin');
+
+  // @debug
+  $is_not_admin_theme = TRUE;
+  drupal_set_message(t('This is a test error.'), 'error');
+  drupal_set_message(t('This is a test warning.'), 'warning');
+  drupal_set_message(t('This is a test status.'), 'status');
+
+  $page_top['workbench_tabs'] = [
+    '#theme' => 'workbench_tabs',
+    '#cache' => [
+      'contexts' => [
+        'url.path',
+        'user.roles',
+      ],
+    ],
+    '#attached' => [
+      'library' => ['workbench_tabs/workbench_tabs'],
+    ],
+    '#access' => $is_not_admin_theme && $account->hasPermission('use workbench_tabs'),
+  ];
+
+  $page_top['workbench_tabs']['messages'] = [
+    '#type' => 'status_messages',
+  ];
+
+  // This is a workaround for entity pages whose routes have been taken over by
+  // Page Manager, which breaks local tasks by messing with route names.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if (preg_match('/^entity\.[^\.]+\.canonical/', $route_name, $matches)) {
+    $route_name = $matches[0];
+  }
+  
+  /** @var \Drupal\Core\Menu\LocalTaskManagerInterface $manager */
+  $manager = \Drupal::service('plugin.manager.menu.local_task');
+  $primary = $manager->getLocalTasks($route_name, 0);
+  $secondary = $manager->getLocalTasks($route_name, 1);
+  
+  $tabs = [
+    '#theme' => 'menu_local_tasks',
+    '#primary' => count(\Drupal\Core\Render\Element::getVisibleChildren($primary['tabs'])) > 1 ? $primary['tabs'] : '',
+    '#secondary' => count(\Drupal\Core\Render\Element::getVisibleChildren($secondary['tabs'])) > 1 ? $secondary['tabs'] : '',
+  ];
+  
+  $page_top['workbench_tabs']['tabs'] = !empty($tabs['#primary']) || !empty($tabs['#secondary']) ? $tabs : array();
+}
