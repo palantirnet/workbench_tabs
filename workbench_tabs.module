@@ -12,6 +12,9 @@ function workbench_tabs_theme() {
     'workbench_tabs' => [
       'render element' => 'element',
     ],
+    'workbench_tabs_status_messages' => [
+      'variables' => ['status_headings' => [], 'message_list' => NULL],
+    ],
   ];
 }
 

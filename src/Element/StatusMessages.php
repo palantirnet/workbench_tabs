@@ -37,7 +37,7 @@ class StatusMessages extends RenderElement {
 
     if (!empty($messages)) {
       $element = [
-        '#theme' => 'status_messages',
+        '#theme' => 'workbench_tabs_status_messages',
         '#message_list' => $messages,
         '#status_headings' => [
           'status' => t('Status message'),
