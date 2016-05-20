@@ -20,7 +20,7 @@ class LocalTasks extends RenderElement {
 
     return [
       '#pre_render' => [[$class, 'preRenderLocalTasks']],
-      '#theme' => 'menu_local_tasks',
+      '#theme' => 'workbench_tabs_menu_local_tasks',
       '#primary' => '',
       '#secondary' => '',
     ];
@@ -46,8 +46,10 @@ class LocalTasks extends RenderElement {
 
     foreach (['#primary', '#secondary'] as $i => $key) {
       $tabs = $manager->getLocalTasks($route_name, $i);
-      if (count(Element::getVisibleChildren($tabs['tabs'])) > 1) {
-        $element[$key] = $tabs['tabs'];
+
+      foreach (Element::getVisibleChildren($tabs['tabs']) as $tab_key) {
+        $element[$key][$tab_key] = $tabs['tabs'][$tab_key];
+        $element[$key][$tab_key]['#theme'] = 'workbench_tabs_menu_local_task';
       }
     }
 
