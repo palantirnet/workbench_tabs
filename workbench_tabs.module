@@ -46,9 +46,6 @@ function workbench_tabs_page_top(array &$page_top) {
         'user.roles',
       ],
     ],
-    '#attached' => [
-      'library' => ['workbench_tabs/workbench_tabs'],
-    ],
     '#access' => $account->hasPermission('use workbench_tabs'),
   ];
 
