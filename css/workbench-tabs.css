@@ -71,3 +71,18 @@
 .workbench-tabs__trigger.is-closed:before {
   content: 'Show ';
 }
+
+.workbench-tabs__trigger:after {
+  content: url('../images/icon-arrow.png');
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.workbench-tabs__trigger.is-closed:after {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);
+  top: -5px;
+}
