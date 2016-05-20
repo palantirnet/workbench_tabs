@@ -32,7 +32,6 @@ function template_preprocess_workbench_tabs(&$variables) {
  */
 function workbench_tabs_page_top(array &$page_top) {
   $account = \Drupal::currentUser();
-  $is_not_admin_theme = \Drupal::theme()->getActiveTheme()->getName() != \Drupal::config('system.theme')->get('admin');
 
   // @debug
   drupal_set_message(t('This is a test error.'), 'error');
@@ -50,7 +49,7 @@ function workbench_tabs_page_top(array &$page_top) {
     '#attached' => [
       'library' => ['workbench_tabs/workbench_tabs'],
     ],
-    '#access' => $is_not_admin_theme && $account->hasPermission('use workbench_tabs'),
+    '#access' => $account->hasPermission('use workbench_tabs'),
   ];
 
   $page_top['workbench_tabs']['messages'] = [
