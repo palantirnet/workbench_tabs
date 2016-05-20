@@ -15,6 +15,9 @@
 #}
 
 <div class="workbench-tabs">
-  <div>{{ messages }}</div>
-  <nav>{{ tabs }}</nav>
+  <div class="workbench-tabs__message">{{ messages }}</div>
+  <nav class="workbench-tabs__tabs">
+    <a href="#" class="workbench-tabs__trigger">Messages</a>
+    {{ tabs }}
+  </nav>
 </div>
