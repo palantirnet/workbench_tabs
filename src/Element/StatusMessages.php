@@ -33,15 +33,21 @@ class StatusMessages extends RenderElement {
    * Clear the message queue when rendering the messages.
    */
   public static function renderMessages($element) {
-    return [
-      '#theme' => 'status_messages',
-      '#message_list' => drupal_get_messages($element['#message_type'], $element['#clear_queue']),
-      '#status_headings' => [
-        'status' => t('Status message'),
-        'error' => t('Error message'),
-        'warning' => t('Warning message'),
-      ],
-    ];
+    $messages = drupal_get_messages($element['#message_type'], $element['#clear_queue']);
+
+    if (!empty($messages)) {
+      $element = [
+        '#theme' => 'status_messages',
+        '#message_list' => $messages,
+        '#status_headings' => [
+          'status' => t('Status message'),
+          'error' => t('Error message'),
+          'warning' => t('Warning message'),
+        ],
+      ] + $element;
+    }
+
+    return $element;
   }
 
 }
