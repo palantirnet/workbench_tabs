@@ -81,13 +81,13 @@
 
 /* Messages Container */
 .workbench-tabs__message {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 /* Messages Container, closed */
 .workbench-tabs__message.is-closed {
   display: none;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 /* Open/Close Messages Trigger */
