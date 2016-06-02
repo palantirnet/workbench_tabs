@@ -1,7 +1,5 @@
 name: Workbench Tabs
 type: module
-description: 'Displays local task tabs and site messages in the toolbar.'
+description: "Display Drupal's local task tabs and status messages in a consistent location on all pages."
 package: Workbench
 core: 8.x
-dependencies:
-  - toolbar
