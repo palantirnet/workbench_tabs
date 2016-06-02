@@ -14,6 +14,8 @@
  */
 #}
 
+{% if (has_messages or has_tabs) %}
+
 {{ attach_library('workbench_tabs/workbench_tabs') }}
 
 <div class="workbench-tabs">
@@ -29,3 +31,5 @@
     {{ tabs }}
   </nav>
 </div>
+
+{% endif %}

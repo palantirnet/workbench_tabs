@@ -45,6 +45,9 @@ function template_preprocess_workbench_tabs(&$variables) {
 
   $variables['messages'] = Drupal::service('renderer')->render($element['messages']);
   $variables['tabs'] = Drupal::service('renderer')->render($element['tabs']);
+
+  $variables['has_messages'] = !empty($variables['messages']);
+  $variables['has_tabs'] = !empty($element['tabs']['#primary']);
 }
 
 /**
