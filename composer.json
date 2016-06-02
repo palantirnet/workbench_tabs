@@ -1,0 +1,7 @@
+{
+    "name": "palantirnet/workbench_tabs",
+    "description": "Display Drupal's local task tabs and status messages in a consistent location on all pages.",
+    "type": "drupal-module",
+    "homepage": "https://github.com/palantirnet/workbench_tabs",
+    "require": {}
+}
