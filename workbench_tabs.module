@@ -53,11 +53,6 @@ function template_preprocess_workbench_tabs(&$variables) {
 function workbench_tabs_page_top(array &$page_top) {
   $account = \Drupal::currentUser();
 
-  // @debug
-  drupal_set_message(t('This is a test error.'), 'error');
-  drupal_set_message(t('This is a test warning.'), 'warning');
-  drupal_set_message(t('This is a test status.'), 'status');
-
   $page_top['workbench_tabs'] = [
     '#theme' => 'workbench_tabs',
     '#access' => $account->hasPermission('use workbench_tabs'),
