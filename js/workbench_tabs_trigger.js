@@ -1,48 +1,92 @@
-// JavaScript should be made compatible with libraries other than jQuery by
-// wrapping it with an "anonymous closure". See:
-// - https://drupal.org/node/1446420
-// - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
+/**
+ * @file
+ * Collapse the workbench_tabs messages.
+ */
 
 (function ($) {
 
-  // We're accessing this DOM element a lot, so put it in a variable.
+  'use strict';
+
   var $messageTrigger = $('.workbench-tabs__trigger');
   var $messageContents = $('.workbench-tabs__message');
 
-  // Open/Close functionality for rail navigation.
-  $messageTrigger.click(function(e) {
-    e.preventDefault();
+  var messageHeight = $messageContents.outerHeight(true);
+  var messagesOpen = messageHeight > 0;
 
-    // Toggle class for the drawer and also add a helper class to the
-    // children.
-    $(this).toggleClass('is-closed');
+  Drupal.behaviors.workbenchTabs = {};
 
-    $messageContents.slideToggle('slow', function() {
-      $messageContents.toggleClass('is-closed', $(this).is(':visible'));
+  Drupal.behaviors.workbenchTabs.attach = function() {
+    // Open/Close functionality for rail navigation.
+    $messageTrigger.once('workbenchTabsMessagesButtonClick').click(function(e) {
+      e.preventDefault();
+      Drupal.behaviors.workbenchTabs.toggleMessagesVisual();
     });
-  });
 
-  // Lose focus on the trigger when the mouse leaves.
-  // We could use .blur() in the click handler above, but that breaks the
-  // menu for users who are tabbing through.
-  $messageTrigger.mouseout(function() {
-    $(this).blur();
-  });
+    // Lose focus on the trigger when the mouse leaves. Using .blur() in the
+    // click handler breaks menus for users who are tabbing through.
+    $messageTrigger.once('workbenchTabsMessagesButtonMouseout').mouseout(function() {
+      $(this).blur();
+    });
 
-  // Close the drawer when we scroll past it.
-  $(window).on('scroll', function() {
-    // Get the height of the message contents.
-    var messageHeight = $messageContents.outerHeight(true);
+    // Close the drawer when we scroll past it.
+    $(window).once('workbenchTabsMessagesScroll').on('scroll', function() {
+      if (messagesOpen && $(window).scrollTop() > messageHeight) {
 
-    // If we've scrolled past the messages and we are not closed, then close the drawer.
-    if ($(window).scrollTop() > messageHeight && !$messageTrigger.hasClass('is-closed')) {
-      // Reset the trigger and contents to closed.
-      $messageTrigger.addClass('is-closed');
-      $messageContents.addClass('is-closed').attr('style','');
+        // Reevaluate message height because user interactions can change it,
+        // but we don't want to calculate this on every scroll event.
+        messageHeight = $messageContents.outerHeight(true);
+        if ($(window).scrollTop() > messageHeight) {
+          Drupal.behaviors.workbenchTabs.closeMessages();
 
-      // Scroll to the top of the page to prevent a jump.
-      $(window).scrollTop(0);
+          // Scroll to the top of the page to prevent a jump.
+          $(window).scrollTop(0);
+        }
+      }
+    });
+  };
+
+  Drupal.behaviors.workbenchTabs.toggleMessagesVisual = function() {
+    $messageContents.slideToggle('slow', function() {
+      messagesOpen = $messageContents.is(':visible');
+      Drupal.behaviors.workbenchTabs.toggleMessages(messagesOpen);
+    });
+  }
+
+  /**
+   * @param bool state
+   *   Force opening or closing the messages.
+   *   - true: open messages
+   *   - false: close messages
+   */
+  Drupal.behaviors.workbenchTabs.toggleMessages = function(state) {
+    if (state === true || state === false) {
+      messagesOpen = !state;
     }
-  });
+    else {
+      messagesOpen = $messageContents.is(':visible');
+    }
+
+    if (messagesOpen) {
+      Drupal.behaviors.workbenchTabs.closeMessages();
+    }
+    else {
+      Drupal.behaviors.workbenchTabs.openMessages();
+    }
+  }
+
+  Drupal.behaviors.workbenchTabs.closeMessages = function() {
+    $messageTrigger.addClass('is-closed');
+    $messageContents.addClass('is-closed');
+    messagesOpen = false;
+  }
+
+  Drupal.behaviors.workbenchTabs.openMessages = function() {
+    $messageTrigger.removeClass('is-closed');
+    $messageContents
+      .removeClass('is-closed')
+      .attr('style', '');
+    messageHeight = $messageContents.outerHeight(true);
+    messagesOpen = true;
+  }
 
 })(jQuery);

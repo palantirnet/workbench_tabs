@@ -7,3 +7,4 @@ workbench_tabs:
     js/workbench_tabs_trigger.js: {}
   dependencies:
     - core/jquery
+    - core/jquery.once
