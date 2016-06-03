@@ -31,17 +31,20 @@
 
   // Close the drawer when we scroll past it.
   $(window).on('scroll', function() {
-    // Get the height of the message contents.
-    var messageHeight = $messageContents.outerHeight(true);
+    // Only close the messages drawer automatically if it exists.
+    if ($messageContents.length) {
+      // Get the height of the message contents.
+      var messageHeight = $messageContents.outerHeight(true);
 
-    // If we've scrolled past the messages and we are not closed, then close the drawer.
-    if ($(window).scrollTop() > messageHeight && !$messageTrigger.hasClass('is-closed')) {
-      // Reset the trigger and contents to closed.
-      $messageTrigger.addClass('is-closed');
-      $messageContents.addClass('is-closed').attr('style','');
+      // If we've scrolled past the messages and we are not closed, then close the drawer.
+      if ($(window).scrollTop() > messageHeight && !$messageTrigger.hasClass('is-closed')) {
+        // Reset the trigger and contents to closed.
+        $messageTrigger.addClass('is-closed');
+        $messageContents.addClass('is-closed').attr('style', '');
 
-      // Scroll to the top of the page to prevent a jump.
-      $(window).scrollTop(0);
+        // Scroll to the top of the page to prevent a jump.
+        $(window).scrollTop(0);
+      }
     }
   });
 
