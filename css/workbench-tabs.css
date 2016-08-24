@@ -10,7 +10,7 @@
 /* Tabs Container */
 .workbench-tabs__tabs {
   position: relative;
-  min-height: 41px;
+  min-height: 33px;
   background-color: #F5F5F5;
   box-shadow: 0px 2px 10px #888888 inset;
 }
@@ -98,7 +98,7 @@
   display: inline-block;
   border-left: 1px solid #b5b5b5;
   border-right: 1px solid #b5b5b5;
-  padding: 10px 25px;
+  padding: 8px 25px;
   color: #0032a0;
 }
 
@@ -132,5 +132,5 @@
   -ms-transform: rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
   transform: rotate(180deg);
-  top: -5px;
+  top: -.5px;
 }
