@@ -1,3 +1,5 @@
+# Copyright 2016 Palantir.net, Inc.
+
 use workbench_tabs:
   title: 'Use Workbench Tabs'
   description: 'View the status messages and local task tabs as Workbench Tabs.'

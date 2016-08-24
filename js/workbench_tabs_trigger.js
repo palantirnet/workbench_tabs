@@ -1,6 +1,8 @@
 /**
  * @file
  * Collapse the workbench_tabs messages.
+ *
+ * Copyright 2016 Palantir.net, Inc.
  */
 
 (function ($) {
