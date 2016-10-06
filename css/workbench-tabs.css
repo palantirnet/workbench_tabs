@@ -92,6 +92,12 @@
   padding: 10px 20px;
 }
 
+/* Zap toolbar link styling within the message area. */
+.workbench-tabs.toolbar .workbench-tabs__message a {
+  display: inline;
+  line-height: inherit;
+}
+
 /* Open/Close Messages Trigger */
 .workbench-tabs__trigger {
   position: absolute;
