@@ -2,7 +2,6 @@
     "name": "palantirnet/workbench_tabs",
     "description": "Display Drupal's local task tabs and status messages in a consistent location on all pages.",
     "license": "GPL-2.0+",
-    "copyright": "Copyright 2016 Palantir.net, Inc.",
     "type": "drupal-module",
     "homepage": "https://github.com/palantirnet/workbench_tabs",
     "authors": [
