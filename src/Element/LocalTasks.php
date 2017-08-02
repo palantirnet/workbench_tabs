@@ -54,6 +54,9 @@ class LocalTasks extends RenderElement {
       $tabs = $manager->getLocalTasks($route_name, $i);
 
       foreach (Element::getVisibleChildren($tabs['tabs']) as $tab_key) {
+        if (!is_array($element[$key])) {
+          $element[$key] = [];
+        }
         $element[$key][$tab_key] = $tabs['tabs'][$tab_key];
         $element[$key][$tab_key]['#theme'] = 'workbench_tabs_menu_local_task';
       }
