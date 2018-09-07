@@ -1,22 +1,7 @@
 {
-    "name": "palantirnet/workbench_tabs",
+    "name": "drupal/workbench_tabs",
     "description": "Display Drupal's local task tabs and status messages in a consistent location on all pages.",
-    "license": "GPL-2.0+",
     "type": "drupal-module",
-    "homepage": "https://github.com/palantirnet/workbench_tabs",
-    "authors": [
-        {
-            "name": "Bec White",
-            "email": "white@palantir.net"
-        },
-        {
-            "name": "Ashley Cyborski",
-            "email": "cyborski@palantir.net"
-        },
-        {
-            "name": "Patrick Weston",
-            "email": "weston@palantir.net"
-        }
-    ],
-    "require": {}
+    "license": "GPL-2.0+",
+    "homepage": "https://www.drupal.org/project/workbench_tabs"
 }
