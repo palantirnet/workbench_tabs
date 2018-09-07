@@ -6,8 +6,3 @@ A module to provide local task tabs and messages as part of the Toolbar, so that
 
 * Enable the module
 * Optionally disable the primary and secondary tabs blocks for the admin theme, so that there are not duplicate task tabs on admin pages
-
-## Copyright
-
-Copyright 2016 Palantir.net, Inc.
-

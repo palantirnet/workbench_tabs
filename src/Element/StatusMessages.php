@@ -2,8 +2,6 @@
 /**
  * @file
  * Contains the StatusMessages class.
- *
- * Copyright 2016 Palantir.net, Inc.
  */
 
 namespace Drupal\workbench_tabs\Element;

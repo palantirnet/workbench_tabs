@@ -1,5 +1,3 @@
-# Copyright 2016 Palantir.net, Inc.
-
 name: Workbench Tabs
 type: module
 description: "Display Drupal's local task tabs and status messages in a consistent location on all pages."
